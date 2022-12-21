@@ -1,31 +1,27 @@
-import { FormRow, FormRowSelect, Alert } from '../../components'
+import { FormRow, FormRowSelect } from '../../components'
 import { useAppContext } from '../../context/appContext'
 import Wrapper from '../../assets/wrappers/DashboardFormPage'
-
+  
 const AddActivity = () => {
   const {
     isLoading,
     isEditing,
-    showAlert,
-    displayAlert,
-    ActivityName,
-    Description,
-    activityTypeOptions,
+    activityName,
+    description,
     activityType,
-    activityOptions,
+    activityTypeOptions,
+    activityDuration,
+    createAt,
     handleChange,
     clearValues,
     createActivity,
     editActivity,
   } = useAppContext()
 
-  const handleSubmit = (e) => {
+  const handleCreate = (e) => {
     e.preventDefault()
 
-    if (!ActivityName || !Description || !activityOptions) {
-      displayAlert()
-      return
-    }
+
     if (isEditing) {
       editActivity()
       return
@@ -41,21 +37,14 @@ const AddActivity = () => {
   return (
     <Wrapper>
       <form className='form'>
-        <h3>{isEditing ? 'edit activity' : 'add activity'}</h3>
-        {showAlert && <Alert />}
+        <h3>{isEditing ? 'edit activity' : 'Create Your Activity'}</h3>
         <div className='form-center'>
-          {/* Activity Name */}
+          
+          {/* Activity's Name */}
           <FormRow
             type='text'
             name='Activity Name'
-            value={ActivityName}
-            handleChange={handleActivityInput}
-          />
-          {/* activity description */}
-          <FormRow
-            type='text'
-            name='Activity description'
-            value={Description}
+            value={activityName}
             handleChange={handleActivityInput}
           />
           {/* activity type */}
@@ -66,15 +55,38 @@ const AddActivity = () => {
             handleChange={handleActivityInput}
             list={activityTypeOptions}
           />
+          {/* description */}
+          <FormRow
+            type='text'
+            name='description'
+            value={description}
+            handleChange={handleActivityInput}
+          />
+          {/* Duration */}
+          <FormRow
+            type='number'
+            labelText='activity duration'
+            name='activityDuration'
+            value={activityDuration}
+            handleChange={handleActivityInput}
+          />
+          {/* Date */}
+          <FormRow
+            type='date'
+            labelText='date'
+            name='date'
+            value={createAt}
+            handleChange={handleActivityInput}
+          />
           {/* btn container */}
           <div className='btn-container'>
             <button
-              type='submit'
+              type='Create'
               className='btn btn-block submit-btn'
-              onClick={handleSubmit}
+              onClick={handleCreate}
               disabled={isLoading}
             >
-              submit
+              create
             </button>
             <button
               className='btn btn-block clear-btn'

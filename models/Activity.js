@@ -4,7 +4,7 @@ const ActivitySchema = new mongoose.Schema(
   {
     company: {
       type: String,
-      required: [true, 'Please provide company'],
+      required: [true, 'Please provide name'],
       maxlength: 50,
     },
     position: {

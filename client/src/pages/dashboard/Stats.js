@@ -3,7 +3,7 @@ import { useAppContext } from '../../context/appContext'
 import { StatsContainer, ChartsContainer } from '../../components'
 
 const Stats = () => {
-  const { showStats, monthlyApplications } = useAppContext()
+  const { showStats, monthlyActivity } = useAppContext()
 
   useEffect(() => {
     showStats()
@@ -13,7 +13,7 @@ const Stats = () => {
   return (
     <>
       <StatsContainer />
-      {monthlyApplications.length > 0 && <ChartsContainer />}
+      {monthlyActivity.length > 0 && <ChartsContainer />}
     </>
   )
 }

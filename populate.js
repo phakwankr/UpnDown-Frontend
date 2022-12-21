@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import connectDB from './db/connect.js';
-import Job from './models/Job.js';
+import Activity from './models/Activity.js';
 
 const start = async () => {
   try {
@@ -13,7 +13,7 @@ const start = async () => {
     const jsonProducts = JSON.parse(
       await readFile(new URL('./mock-data.json', import.meta.url))
     );
-    await Job.create(jsonProducts);
+    await Activity.create(jsonProducts);
     console.log('Success!!!');
     process.exit(0);
   } catch (error) {

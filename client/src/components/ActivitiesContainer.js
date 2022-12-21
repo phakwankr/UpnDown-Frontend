@@ -37,12 +37,14 @@ const ActivitiesContainer = () => {
       <h5>
         {totalActivities} activity{activities.length > 1 && 's'} found
       </h5>
+
       <div className='activities'>
         {activities.map((activity) => {
           return <Activity key={activity._id} {...activity} />;
         })}
       </div>
       {numOfPages > 1 && <PageBtnContainer />}
+      
     </Wrapper>
   );
 };

@@ -35,8 +35,6 @@ import {
 } from './actions';
 
 const initialState = {
-  userLoading: true,
-  isLoading: false,
   showAlert: false,
   alertText: '',
   alertType: '',
@@ -46,15 +44,12 @@ const initialState = {
   isEditing: false,
   editActivityId: '',
   activityTypeOptions: ['Running', 'Bicycling', 'Hiking', 'Swimming'],
-  activityType: 'full-time',
-  statusOptions: ['interview', 'declined', 'pending'],
-  status: 'pending',
   activities: [],
   totalActivities: 0,
   numOfPages: 1,
   page: 1,
   stats: {},
-  monthlyApplications: [],
+  monthlyActivity: [],
   search: '',
   searchStatus: 'all',
   searchType: 'all',
@@ -158,14 +153,13 @@ const AppProvider = ({ children }) => {
   const createActivity = async () => {
     dispatch({ type: CREATE_ACTIVITY_BEGIN });
     try {
-      const { ActivityName, ActivityType, Description, Duration, Date, CreatedBy } = state;
+      const { Activityname, ActivityType, Description, Duration, CreatedAt } = state;
       await authFetch.post('/activities', {
-        ActivityName,
+        Activityname,
         Description,
         ActivityType,
         Duration,
-        Date,
-        CreatedBy,
+        CreatedAt,
       });
       dispatch({ type: CREATE_ACTIVITY_SUCCESS });
       dispatch({ type: CLEAR_VALUES });
@@ -212,7 +206,7 @@ const AppProvider = ({ children }) => {
 
     try {
       const { ActivityName, ActivityType, Description, Duration, Date, CreatedBy } = state;
-      await authFetch.patch(`/activities/${state.editJobId}`, {
+      await authFetch.patch(`/activities/${state.editActivityId}`, {
         ActivityName,
         ActivityType,
         Description,
@@ -253,7 +247,7 @@ const AppProvider = ({ children }) => {
         type: SHOW_STATS_SUCCESS,
         payload: {
           stats: data.defaultStats,
-          monthlyApplications: data.monthlyApplications,
+          monthlyActivity: data.monthlyActivity,
         },
       });
     } catch (error) {

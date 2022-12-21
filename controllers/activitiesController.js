@@ -1,4 +1,4 @@
-import Activity from '../models/Job.js';
+import Activity from '../models/Activity.js';
 import { StatusCodes } from 'http-status-codes';
 import {
   BadRequestError,

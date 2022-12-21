@@ -1,28 +1,23 @@
 import { useAppContext } from '../context/appContext'
 import StatItem from './StatItem'
-import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from 'react-icons/fa'
+import { FaBug } from 'react-icons/fa'
 import Wrapper from '../assets/wrappers/StatsContainer'
 
 const StatsContainer = () => {
   const { stats } = useAppContext()
 
   const defaultStats = [
+
     {
-      title: 'pending applications',
-      count: stats.pending || 0,
-      icon: <FaSuitcaseRolling />,
-      color: '#e9b949',
-      bcg: '#fcefc7',
+      title: 'Activities Done',
+      count: stats.declined || 0,
+      icon: <FaBug />,
+      color: '#d66a6a',
+      bcg: '#ffeeee',
     },
+
     {
-      title: 'interviews scheduled',
-      count: stats.interview || 0,
-      icon: <FaCalendarCheck />,
-      color: '#647acb',
-      bcg: '#e0e8f9',
-    },
-    {
-      title: 'jobs declined',
+      title: 'Total Duration',
       count: stats.declined || 0,
       icon: <FaBug />,
       color: '#d66a6a',

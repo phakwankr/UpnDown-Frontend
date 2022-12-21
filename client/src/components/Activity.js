@@ -7,12 +7,11 @@ import ActivityInfo from './ActivityInfo'
 
 const Activity = ({
   _id,
-  position,
-  company,
-  activityLocation,
-  activityType,
+  ActivityName,
+  Description,
+  ActivityType,
+  Duration,
   createdAt,
-  status,
 }) => {
   const { setEditActivity, deleteActivity } = useAppContext()
 
@@ -21,18 +20,17 @@ const Activity = ({
   return (
     <Wrapper>
       <header>
-        <div className='main-icon'>{company.charAt(0)}</div>
+        <div className='main-icon'>{Description.charAt(0)}</div>
         <div className='info'>
-          <h5>{position}</h5>
-          <p>{company}</p>
+          <h5>{ActivityName}</h5>
+          <p>{Description}</p>
         </div>
       </header>
       <div className='content'>
         <div className='content-center'>
-          <ActivityInfo icon={<FaLocationArrow />} text={activityLocation} />
+          <ActivityInfo icon={<FaLocationArrow />} text={ActivityName} />
           <ActivityInfo icon={<FaCalendarAlt />} text={date} />
-          <ActivityInfo icon={<FaBriefcase />} text={activityType} />
-          <div className={`status ${status}`}>{status}</div>
+          <ActivityInfo icon={<FaBriefcase />} text={ActivityType} />
         </div>
         <footer>
           <div className='actions'>
